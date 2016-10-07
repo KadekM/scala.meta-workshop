@@ -10,8 +10,11 @@ lazy val buildSettings = Seq(
   // See core/src/main/scala/ch/epfl/scala/Versions.scala
   version := scalaworld.Versions.nightly,
   scalaVersion := scalaworld.Versions.scala,
-  updateOptions := updateOptions.value.withCachedResolution(true)
+  updateOptions := updateOptions.value.withCachedResolution(true),
+  libraryDependencies += "com.lihaoyi" % "ammonite" % "0.7.7" % "test" cross CrossVersion.full,
+  initialCommands in (Test, console) := """ammonite.Main().run()"""
 )
+
 
 // Macro setting is any module that has macros, or manipulates meta trees
 lazy val macroSettings = Seq(
